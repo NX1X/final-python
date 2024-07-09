@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build, Push, and Deploy Docker Image
 
 on:
   push:
@@ -37,20 +37,23 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_IMAGE_TAG }}
 
+    - name: Get the short commit ID
+      id: vars
+      run: echo "::set-output name=short_sha::$(git rev-parse --short HEAD)"
+
     - name: Deploy to AWS CodeDeploy
       uses: aws-actions/aws-code-deploy-action@v1.0.0
       with:
-        application-name: your-application-name
-        deployment-group-name: your-deployment-group-name
+        application-name: ${{ secrets.CODEDEPLOY_APP_NAME }}
+        deployment-group-name: ${{ secrets.CODEDEPLOY_DEPLOYMENT_GROUP }}
         deployment-config-name: CodeDeployDefault.OneAtATime
         description: "Deploy Docker image to EC2"
         revision-location:
-          revisionType: S3
-          s3Location:
-            bucket: your-bucket-name
-            key: your-s3-key
-            bundleType: zip
+          revisionType: GitHub
+          gitHubLocation:
+            repository: nx1x/final-python
+            commitId: ${{ steps.vars.outputs.short_sha }}
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: your-region
+        AWS_REGION: ${{ secrets.AWS_REGION }}
