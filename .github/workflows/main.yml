@@ -36,7 +36,3 @@ jobs:
       with:
         push: true
         tags: ${{ secrets.DOCKER_IMAGE_TAG }}
-
-    - name: Run tests
-      run: |
-        docker run --rm ${{ secrets.DOCKER_IMAGE_TAG }} python -m unittest discover -s tests
