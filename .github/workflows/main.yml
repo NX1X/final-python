@@ -40,7 +40,8 @@ jobs:
 
     - name: Run tests
       run: |
-        docker run --rm nx1x/final-python:latest python -m unittest discover -s tests
+        pip install -r requirements.txt
+        python -m unittest discover -s tests
 
     - name: Push Docker image
       uses: docker/build-push-action@v2
