@@ -1,3 +1,5 @@
+#nx1x
+
 from flask import Flask, Blueprint, jsonify
 from flask_restplus import Api
 from ma import ma
@@ -6,8 +8,6 @@ from db import db
 from resources.store import Store, StoreList, store_ns, stores_ns
 from resources.item import Item, ItemList, items_ns, item_ns
 from marshmallow import ValidationError
-
-#nx1x
 
 app = Flask(__name__)
 bluePrint = Blueprint('api', __name__, url_prefix='/api')
