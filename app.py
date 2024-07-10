@@ -7,6 +7,8 @@ from resources.store import Store, StoreList, store_ns, stores_ns
 from resources.item import Item, ItemList, items_ns, item_ns
 from marshmallow import ValidationError
 
+#nx1x
+
 app = Flask(__name__)
 bluePrint = Blueprint('api', __name__, url_prefix='/api')
 api = Api(bluePrint, doc='/doc', title='Sample Flask-RestPlus Application')
