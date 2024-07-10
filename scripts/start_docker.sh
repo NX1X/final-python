@@ -8,5 +8,5 @@ docker rm $(docker ps -a -q) || true
 docker pull nx1x/final-python:latest
 
 # Run the container
-docker run -d -p 5000:5000 nx1x/final-python:latest
+docker run -p 5000:5000 nx1x/final-python:latest
 
