@@ -4,7 +4,7 @@
         {
             "name": "final-python",
             "image": "nx1x/final-python:latest",
-            "cpu": 2048,
+            "cpu": 4096,
             "memory": 8192,
             "memoryReservation": 6144,
             "portMappings": [
